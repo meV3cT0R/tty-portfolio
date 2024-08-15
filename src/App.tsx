@@ -43,7 +43,7 @@ function App() {
                 cmd : prompt,
                 output: prompt,
               }
-              if(prompt[0]=="help") {
+              if(promptArr[0]=="help") {
                 newHistory.output = <div>
                     <p><strong>ls</strong> - list all directories</p>
                     <p><strong>clear</strong> - clears the terminal</p>
