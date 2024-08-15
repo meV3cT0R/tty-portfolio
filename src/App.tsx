@@ -43,7 +43,15 @@ function App() {
                 cmd : prompt,
                 output: prompt,
               }
-              if(promptArr[0]=="ls")
+              if(prompt[0]=="help") {
+                newHistory.output = <div>
+                    <p><strong>ls</strong> - list all directories</p>
+                    <p><strong>clear</strong> - clears the terminal</p>
+                    <p><strong>cat</strong> - copy the content of file into terminal</p>
+                    <p><strong>cd</strong> - change directory</p>
+                    <p><strong>open</strong> - open the link</p>
+                </div>
+              }else if(promptArr[0]=="ls")
                 newHistory.output = ls();
               else if(promptArr[0]=="clear")
                 return setHistory([]);
