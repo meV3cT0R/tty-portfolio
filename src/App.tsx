@@ -26,7 +26,12 @@ function App() {
   useEffect(()=> {
       foc()
   },[])
-  
+
+  useEffect(()=> {
+    window.scrollTo({
+      top : promptRef.current?.offsetTop,
+    })
+  },[history])
   return (
     <>
       <div 
