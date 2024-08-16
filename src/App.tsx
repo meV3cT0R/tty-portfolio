@@ -9,6 +9,8 @@ import { cmdSplit } from './utils/cmdSplit';
 import useCat from './commands/useCat';
 import useOpen from './commands/useOpen';
 import useTree from './commands/useTree';
+import God from './svg/God';
+import Title from './svg/Title';
 
 
 function App() {
@@ -38,6 +40,7 @@ function App() {
         className='bg-black text-white min-h-[100vh] w-full md:text-xl px-2 md:px-5 font-mono'
         onClick={_=>foc()}
       >
+        <God />
         <History history={history}/>
         <form 
           onSubmit={(e:React.FormEvent<HTMLFormElement>)=> {
