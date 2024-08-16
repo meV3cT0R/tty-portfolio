@@ -10,7 +10,6 @@ import useCat from './commands/useCat';
 import useOpen from './commands/useOpen';
 import useTree from './commands/useTree';
 import God from './svg/God';
-import Title from './svg/Title';
 
 
 function App() {
