@@ -8,6 +8,7 @@ import useCd from './commands/useCd';
 import { cmdSplit } from './utils/cmdSplit';
 import useCat from './commands/useCat';
 import useOpen from './commands/useOpen';
+import useTree from './commands/useTree';
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
   const cd = useCd();
   const cat = useCat();
   const open = useOpen();
-
+  const tree = useTree();
+  
   const foc = ()=> promptRef.current?.focus();
   useEffect(()=> {
       foc()
@@ -28,13 +30,22 @@ function App() {
   return (
     <>
       <div 
-        className='bg-black text-white min-h-[100vh] w-full text-xl px-5 font-mono'
+        className='bg-black text-white min-h-[100vh] w-full md:text-xl px-2 md:px-5 font-mono'
         onClick={_=>foc()}
       >
         <History history={history}/>
         <form 
           onSubmit={(e:React.FormEvent<HTMLFormElement>)=> {
               e.preventDefault();
+              if(prompt.trim()=="") {
+                setHistory([...history,{
+                  loc : location,
+                  cmd: prompt,
+                  output: ""
+                }])
+
+                return;
+              }
               const promptLower = prompt.toLowerCase()
               setPrompt("")
               const promptArr = cmdSplit(promptLower);
@@ -49,6 +60,7 @@ function App() {
                     <p><strong>clear</strong> - clears the terminal</p>
                     <p><strong>cat</strong> - copy the content of file into terminal</p>
                     <p><strong>cd</strong> - change directory</p>
+                    <p><strong>tree</strong> - view subdirectories in tree like structure</p>
                     <p><strong>open</strong> - open the link</p>
                 </div>
               }else if(promptArr[0]=="ls")
@@ -59,15 +71,19 @@ function App() {
                 newHistory.output=cat(promptArr[1])
               else if(promptArr[0]=="cd"){
                 newHistory.output = cd(promptArr[1].split("/"))
-              }else if(promptArr[0]=="open"){
+              }
+              else if(promptArr[0]=="open"){
                 newHistory.output = open(promptArr[1])
+              }
+              else if(promptArr[0]=="tree"){
+                newHistory.output = tree();
               }
               else
                 newHistory.output = `vsh : command not found : ${promptArr[0]}`
               setHistory([...history,newHistory])
           }}
         >
-          <div className='flex space-x-5 text-xl'>
+          <div className='space-x-2 flex md:space-x-5 '>
             <span className='flex'>~/{location.join("/")} </span>
             <input
               ref={promptRef}

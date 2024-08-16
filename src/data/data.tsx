@@ -32,7 +32,7 @@ const skills = {
                     "name": "Node.js",
                     "tools": [
                         {
-                        "title": "Express.js"
+                            "name": "Express.js"
                         }
                     ]
                 }

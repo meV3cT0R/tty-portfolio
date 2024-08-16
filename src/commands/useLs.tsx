@@ -13,9 +13,9 @@ const useLs  = ()=> {
             curr = med.subdir;
         }
         if(l=="")
-            return <div className="flex space-x-7">
+            return <div className="flex flex-wrap ">
                 {curr.map((c,index)=>{
-                    return <span key={((index+123*10)/2)*100+1233} className={`${c.type=="dir"?"text-blue-900":"text-white"}`}>{c.name}</span>
+                    return <span key={((index+123*10)/2)*100+1233} className={`mr-6 ${c.type=="dir"?"text-blue-900":"text-white"} ${c.type=="url" && "underline"}`}>{c.name}</span>
                 })}
             </div>
     }
