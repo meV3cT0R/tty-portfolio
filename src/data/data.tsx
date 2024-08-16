@@ -2,7 +2,7 @@ const skills = {
     "frontendSkills": [
         {
             "name": "html",
-            "desc" : "Hacked NASA using it"
+            "desc" : "Hacked NASA using html"
         },
         {
             "name": "css",
@@ -139,8 +139,8 @@ export const data = {
                     "type": "txt",
                     "name": "readme",
                     "content": <div>
-                        <p>open command can be used to open the link </p>
-                        <p>example usage : open filename </p>
+                        <p><strong>open </strong> command can be used to open the link </p>
+                        <p>Example Usage : <em>open filename</em> </p>
                     </div>
                 }
             ]
