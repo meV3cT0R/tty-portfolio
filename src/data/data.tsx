@@ -1,5 +1,9 @@
+enum SkillType {
+    FRONTEND,BACKEND,SPECIALIZED_SKILLS
+}
+
 const skills = {
-    "frontendSkills": [
+    "frontend": [
         {
             "name": "html",
             "desc" : "Hacked NASA using html"
@@ -24,7 +28,7 @@ const skills = {
             ]
         }
     ],
-    "backendSkills": [
+    "backend": [
         {
             "name": "javascript",
             "tools": [
@@ -42,6 +46,29 @@ const skills = {
             "tools" : [
                 {
                     "name" : "Spring Framework"
+                }
+            ]
+        },{
+            "name" : "python",
+            "tools" : [
+                {
+                    "name" : "Django"
+                }
+            ] 
+        }
+    ],
+    "specialized_skills" : [
+        {
+            "name" : "Web_Scraping",
+            "tools" : [
+                {
+                    "name" : "BeautifulSoup",
+                },
+                {
+                    "name" : "Scrapy",
+                },
+                {
+                    "name" : "Selenium",
                 }
             ]
         }
@@ -103,18 +130,14 @@ export const data = {
         {
             "type": "dir",
             "name": "skills",
-            "subdir": [
-                {
-                    "type": "dir",
-                    "name": "Frontend",
-                    "subdir": genSkillObj(skills["frontendSkills"])
-                },
-                {
-                    "type": "dir",
-                    "name": "Backend",
-                    "subdir": genSkillObj(skills["backendSkills"])
-                },
-            ]
+            "subdir": Object.keys(skills).map(key=> {
+                    
+                    return {
+                        "type": "dir",
+                        "name": key,
+                        "subdir": genSkillObj(skills[key as keyof typeof skills])
+                    }
+            })
         },
         {
             "type": "dir",

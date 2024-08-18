@@ -5,6 +5,14 @@ import { currLocation } from "./utils/currLocation";
 const useCd = () => {
     const { location, setLocation } = useApp();
     const func = (fut : string[]) => {
+        if(fut[0]=="--help" || fut[0] =="-h") {
+            return <div>
+                <p> Usage : cd {"<path/to/dir>"} </p>
+                <p> Examples:</p>
+                <p> cd projects </p>
+                <p> cd {"skills/frontend/"}</p>
+            </div>
+        }
         let curr: any[];
         if(fut[0].trim()=="~") {
             if (setLocation)

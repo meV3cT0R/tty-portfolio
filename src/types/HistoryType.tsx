@@ -1,5 +1,5 @@
 export default interface HistoryType {
-    loc : string[],
-    cmd : string,
+    loc : string[] | null,
+    cmd : string | null,
     output : any
 }
