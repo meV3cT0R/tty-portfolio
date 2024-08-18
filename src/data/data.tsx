@@ -1,7 +1,3 @@
-enum SkillType {
-    FRONTEND,BACKEND,SPECIALIZED_SKILLS
-}
-
 const skills = {
     "frontend": [
         {
