@@ -66,6 +66,12 @@ const skills = {
                 {
                     "name" : "Selenium",
                 }
+            ],
+            "projects" : [
+                {
+                    "name" : "job_lising",
+                    "url" : "https://github.com/meV3cT0R/job_listing"
+                }
             ]
         }
     ]
@@ -87,6 +93,21 @@ const genSkillObj = (skills: any[]) => {
                 "name" : "readme",
                 "content" : skill.desc
             })
+        if("projects" in skill) {
+            let project  :any = {
+                "type" : "dir",
+                "name" : "projects",
+                "subdir" : []
+            }
+            skill["projects"].map((p : {name: string, url:string},idx:number)=>{
+                project["subdir"].push({
+                    "type" : "url",
+                    "name" : p.name || `project ${idx}`,
+                    "url" : p.url
+                })
+            })
+            obj["subdir"].push(project)
+        }
         return obj;
     })
 }
