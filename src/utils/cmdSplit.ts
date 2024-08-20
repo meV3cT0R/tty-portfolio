@@ -1,7 +1,7 @@
 export function cmdSplit(text:string) : string[] {
-    let single : string = "";
+    let single = "";
     const arr : string[] = [];
-    let temp:string = "";
+    let temp = "";
     for(const i of text) {
         if(single =="" && (i=="\"" ||i=="'")) {
             single=i;
