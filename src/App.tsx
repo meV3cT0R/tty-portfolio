@@ -11,7 +11,7 @@ function App() {
   const [prompt,setPrompt] = useState<string>("");
   const promptRef = useRef<HTMLInputElement>(null);
   
-  const cmd = useCmd();
+  const cmd : (prompt:string)=>void = useCmd();
   const foc = ()=> promptRef.current?.focus();
 
   useEffect(()=> {

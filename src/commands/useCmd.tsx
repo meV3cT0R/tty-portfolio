@@ -8,7 +8,7 @@ import useApp from '../context/useApp';
 import HistoryType from '../types/HistoryType';
 import { AppContextType } from '../context/AppContext';
 
-export const useCmd = () => {
+export const useCmd = () : (prompt :string)=>void  => {
     const { location, setHistory, history } :AppContextType  = useApp();
 
     const ls = useLs();
@@ -17,7 +17,7 @@ export const useCmd = () => {
     const open = useOpen();
     const tree = useTree();
 
-    const func : (prompt :string)=>void = (prompt) => {
+    const func = (prompt : string) : void => {
         if (prompt.trim() == "") {
             if (setHistory) {
                 setHistory([...history, {
@@ -48,9 +48,10 @@ export const useCmd = () => {
             </div>
         } else if (promptArr[0] == "ls")
             newHistory.output = ls(promptArr[1]?.split("/") || []);
-        else if (promptArr[0] == "clear")
-            return setHistory && setHistory([]);
-        else if (promptArr[0] == "cat") {
+        else if (promptArr[0] == "clear"){
+            if(setHistory)
+                setHistory([]);
+        }else if (promptArr[0] == "cat") {
             let output;
             if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>

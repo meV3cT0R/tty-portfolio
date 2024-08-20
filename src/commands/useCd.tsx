@@ -1,10 +1,11 @@
+import { AppContextType } from "../context/AppContext";
 import useApp from "../context/useApp";
 import {data} from "../data/data";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
 const useCd = () => {
-    const { location, setLocation } = useApp();
+    const { location, setLocation } : AppContextType  = useApp();
     const func = (fut : string[]) => {
         if(fut[0]=="--help" || fut[0] =="-h") {
             return <div>
@@ -17,7 +18,7 @@ const useCd = () => {
         let curr: Structure[];
         if(fut[0].trim()=="~") {
             if (setLocation)
-            setLocation([])
+                setLocation([])
             return "";
         }
         const locs = [...location];
