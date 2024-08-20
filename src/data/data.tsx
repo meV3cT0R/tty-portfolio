@@ -1,4 +1,4 @@
-import { Project, Skill, Skills } from "../models/Skills"
+import { Skill, Skills } from "../models/Skills"
 import { Structure } from "../models/Structure"
 
 const skills : Skills = {
@@ -103,14 +103,14 @@ const genSkillObj = (skills: Skill[]) => {
                 "name" : "projects"
             }
             project.subdir = []
-            
-            skill.projects.map((p : Project,idx:number)=>{
-                project.subdir?.push({
+
+            for(let i=0;i<skill.projects.length;i++) {
+                project.subdir.push({
                     "type" : "url",
-                    "name" : p.name ?? `project ${idx}`,
-                    "url" : p.url
+                    "name" : skill.projects[i].name ?? `project ${i}`,
+                    "url" : skill.projects[i].url
                 })
-            })
+            }
             obj.subdir.push(project)
         }
         return obj;
