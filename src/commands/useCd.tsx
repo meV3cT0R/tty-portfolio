@@ -14,7 +14,7 @@ const useCd = ()=> {
                 childrens: [
                     {
                         tag : "p",
-                        content: "Usage : cd <path|to|dir>",
+                        content: "Usage : cd path/to/dir",
                     },
                     {
                         tag : "p",

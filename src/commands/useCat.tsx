@@ -17,7 +17,7 @@ const useCat = () => {
                     },
                     {
                         tag : "p",
-                        content: "Usage : cat <path|to|file>",
+                        content: "Usage : cat path/to/file",
                     },
                     {
                         tag : "p",

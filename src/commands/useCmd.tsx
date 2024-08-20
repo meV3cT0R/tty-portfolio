@@ -57,7 +57,7 @@ export const useCmd = ()  => {
             let output;
             if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>
-                    <p>Usage: cat {"<path/to/file>"}</p>
+                    <p>Usage: cat {"path/to/file"}</p>
                     <p> Type "cat --help" for more info</p>
                 </div>
             } else {
@@ -70,7 +70,7 @@ export const useCmd = ()  => {
             let output;
             if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>
-                    <p>Usage: cd {"<path/to/dir>"}</p>
+                    <p>Usage: cd {"path/to/dir"}</p>
                     <p> Type "cd --help" for more info</p>
                 </div>
             } else {
@@ -82,7 +82,7 @@ export const useCmd = ()  => {
             let output;
             if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>
-                    <p>Usage: open {"<path/to/url>"}</p>
+                    <p>Usage: open {"path/to/url"}</p>
                     <p> Type "open --help" for more info</p>
                 </div>
             } else {

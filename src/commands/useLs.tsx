@@ -14,7 +14,7 @@ const useLs = () => {
 
                     {
                         tag : "p",
-                        content: "Usage : ls <path|to|dir>",
+                        content: "Usage : ls path/to/dir",
                     },
                     {
                         tag : "p",

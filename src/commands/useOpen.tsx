@@ -17,7 +17,7 @@ const useOpen  = ()=> {
                     },
                     {
                         tag : "p",
-                        content: "Usage : open <path|to|url>",
+                        content: "Usage : open path/to/url",
                     },
                     {
                         tag : "p",

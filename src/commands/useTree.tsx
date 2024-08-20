@@ -13,7 +13,7 @@ const useTree = () => {
                 childrens: [
                     {
                         tag: 'p',
-                        content: 'Usage : tree {"[path|to|dir]"}',
+                        content: 'Usage : tree path/to/dir',
                     },
                     {
                         tag: 'p',
