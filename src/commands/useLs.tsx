@@ -1,5 +1,6 @@
 import useApp from "../context/useApp";
 import { data } from "../data/data";
+import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
 const useLs = () => {
@@ -13,7 +14,7 @@ const useLs = () => {
                 <p> ls {"skills/frontend/"}</p>
             </div>
         }
-        let curr: any[] = currLocation(data, [...location, ...l]);
+        const curr: Structure[] = currLocation(data, [...location, ...l]);
 
         return <div className="flex flex-wrap ">
             {curr.map((c, index) => {

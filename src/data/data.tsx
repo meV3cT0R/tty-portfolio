@@ -1,4 +1,7 @@
-const skills = {
+import { Project, Skill, Skills } from "../models/Skills"
+import { Structure } from "../models/Structure"
+
+const skills : Skills = {
     "frontend": [
         {
             "name": "html",
@@ -77,30 +80,32 @@ const skills = {
     ]
 }
 
-const genSkillObj = (skills: any[]) => {
-    return skills.map((skill): any => {
-        let obj :any = {
+const genSkillObj = (skills: Skill[]) => {
+    return skills.map(skill => {
+        const obj : Structure = {
             "type": "dir",
-            "name": skill.name,
-            "subdir": []
+            "name": skill.name
         }
-        if ("tools" in skill) 
+
+        obj.subdir = []
+        if(skill.tools)
             obj["subdir"] =genSkillObj(skill.tools)
 
-        if("desc" in skill)
-            obj["subdir"].push({
+        if(skill.desc)
+            obj["subdir"]?.push({
                 "type" : "txt",
                 "name" : "readme",
                 "content" : skill.desc
             })
-        if("projects" in skill) {
-            let project  :any = {
+        if(skill.projects) {
+            const project  : Structure = {
                 "type" : "dir",
-                "name" : "projects",
-                "subdir" : []
+                "name" : "projects"
             }
-            skill["projects"].map((p : {name: string, url:string},idx:number)=>{
-                project["subdir"].push({
+            project.subdir = []
+            
+            skill.projects.map((p : Project,idx:number)=>{
+                project.subdir?.push({
                     "type" : "url",
                     "name" : p.name || `project ${idx}`,
                     "url" : p.url
@@ -111,7 +116,7 @@ const genSkillObj = (skills: any[]) => {
         return obj;
     })
 }
-export const data = {
+export const data : Structure= {
     "type": "dir",
     "name": "~",
     "subdir": [

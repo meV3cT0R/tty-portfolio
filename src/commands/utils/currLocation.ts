@@ -1,14 +1,15 @@
-export function currLocation(data:any,location:string[]) : any[] {
-    let curr: any[] = data.subdir;
-    for (let loc of location) {
-        console.log(loc);
-        let med = curr.find(dat => dat.name.toLowerCase() == loc.toLowerCase());
-        console.log(med);
+import { Structure } from "../../models/Structure";
 
-        if (med == null) {
+export function currLocation(data:Structure,location:string[]) : Structure[] {
+    if(!data.subdir) throw new Error(`Bruh what?`);
+    let curr: Structure[] = data.subdir;
+    for (const loc of location) {
+        const med = curr.find(dat => dat.name.toLowerCase() == loc.toLowerCase());
+
+        if (!med) {
             throw new Error(`Directory ${loc} does not exist`)
         }
-        if(med.type != "dir") {
+        if(med.type != "dir" || !med.subdir) {
             throw new Error(`${med.name} is not a directory`)
         }
         curr = med.subdir;

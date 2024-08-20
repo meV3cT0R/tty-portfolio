@@ -16,7 +16,7 @@ const useCat = () => {
         }
         try {
             const fileName = l.pop();
-            let curr: any[] = currLocation(data, [...location, ...l]);
+            const curr: any[] = currLocation(data, [...location, ...l]);
             const file = curr.find(dat => dat.name.toLowerCase() == fileName?.toLowerCase());
             if (file == null) {
                 return `cat : no such file or directory : ${fileName}`;

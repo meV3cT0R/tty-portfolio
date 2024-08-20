@@ -7,7 +7,7 @@ import useTree from '../commands/useTree';
 import useApp from '../context/useApp';
 import HistoryType from '../types/HistoryType';
 
-const useCmd = () => {
+export const useCmd = () => {
     const { location, setHistory, history } = useApp();
 
     const ls = useLs();
@@ -16,14 +16,15 @@ const useCmd = () => {
     const open = useOpen();
     const tree = useTree();
 
-    const func = (prompt:string)=> {
+    const func = (prompt: string) => {
         if (prompt.trim() == "") {
-            setHistory && setHistory([...history, {
-                loc: location,
-                cmd: prompt,
-                output: ""
-            }])
-
+            if (setHistory) {
+                setHistory([...history, {
+                    loc: location,
+                    cmd: prompt,
+                    output: ""
+                }])
+            }
             return;
         }
         const promptLower = prompt.toLowerCase()
@@ -45,41 +46,41 @@ const useCmd = () => {
                 <p> example : ls --help </p>
             </div>
         } else if (promptArr[0] == "ls")
-            newHistory.output = ls(promptArr[1]?.split("/") ||  []);
+            newHistory.output = ls(promptArr[1]?.split("/") || []);
         else if (promptArr[0] == "clear")
             return setHistory && setHistory([]);
-        else if (promptArr[0] == "cat"){
+        else if (promptArr[0] == "cat") {
             let output;
-            if(promptArr.length == 1 || promptArr.length > 2) {
+            if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>
                     <p>Usage: cat {"<path/to/file>"}</p>
                     <p> Type "cat --help" for more info</p>
                 </div>
-            }else {
+            } else {
                 output = cat(promptArr[1].split("/"))
             }
             newHistory.output = output
         }
         else if (promptArr[0] == "cd") {
             let output;
-            if(promptArr.length == 1 || promptArr.length > 2) {
+            if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>
                     <p>Usage: cd {"<path/to/dir>"}</p>
                     <p> Type "cd --help" for more info</p>
                 </div>
-            }else {
+            } else {
                 output = cd(promptArr[1].split("/"))
             }
             newHistory.output = output
         }
         else if (promptArr[0] == "open") {
             let output;
-            if(promptArr.length == 1 || promptArr.length > 2) {
+            if (promptArr.length == 1 || promptArr.length > 2) {
                 output = <div>
                     <p>Usage: open {"<path/to/url>"}</p>
                     <p> Type "open --help" for more info</p>
                 </div>
-            }else {
+            } else {
                 output = open(promptArr[1]?.split("/"))
             }
             newHistory.output = output
@@ -87,12 +88,12 @@ const useCmd = () => {
         else if (promptArr[0] == "tree") {
             newHistory.output = tree(promptArr[1]?.split("/") || []);
         }
-        else
+        else {
             newHistory.output = `vsh : command not found : ${promptArr[0]}`
-        setHistory && setHistory([...history, newHistory])
+        }
+        if (setHistory)
+            setHistory([...history, newHistory])
     }
 
     return func;
 }
-
-export default useCmd;

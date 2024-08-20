@@ -1,5 +1,6 @@
 import useApp from "../context/useApp";
 import {data} from "../data/data";
+import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
 const useCd = () => {
@@ -13,27 +14,27 @@ const useCd = () => {
                 <p> cd {"skills/frontend/"}</p>
             </div>
         }
-        let curr: any[];
+        let curr: Structure[];
         if(fut[0].trim()=="~") {
             if (setLocation)
             setLocation([])
             return "";
         }
-        let locs = [...location];
+        const locs = [...location];
 
         curr = currLocation(data, location);
-        for (let f of fut) {
+        for (const f of fut) {
             if(f=="..") {
                 locs.pop();
                 curr = currLocation(data, locs);
 
                 continue;
             }
-            let med = curr.find(dat => dat.name.toLowerCase() == f.toLowerCase());
-            if (med == null) {
+            const med = curr.find(dat => dat.name.toLowerCase() == f.toLowerCase());
+            if (!med) {
                 return `cd : no such file or directory : ${f}`
             }
-            if (med.type != "dir") {
+            if (med.type != "dir" || !med.subdir) {
                 return `cd : not a directory : ${f}`
             }
             locs.push(f);
