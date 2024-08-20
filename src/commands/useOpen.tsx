@@ -4,7 +4,7 @@ import { FakeHTML } from "../models/FakeHTML";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
-const useOpen  = (): (l:string[])=> FakeHTML=> {
+const useOpen  = ()=> {
     const { location } = useApp();
     const func = (l:string[]=[]) : FakeHTML=> {
         if (l[0] == "--help" || l[0] =="-h") {
@@ -17,7 +17,7 @@ const useOpen  = (): (l:string[])=> FakeHTML=> {
                     },
                     {
                         tag : "p",
-                        content: "Usage : open <path/to/url>",
+                        content: "Usage : open <path|to|url>",
                     },
                     {
                         tag : "p",

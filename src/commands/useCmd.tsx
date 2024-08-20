@@ -48,7 +48,7 @@ export const useCmd = ()  => {
                 <p> example : ls --help </p>
             </div>
         } else if (promptArr[0] == "ls")
-            newHistory.output = fakeToJ(ls(promptArr[1]?.split("/") || []));
+            newHistory.output = fakeToJ(ls(promptArr[1]?.split("/")));
         else if (promptArr[0] == "clear"){
             if(setHistory)
                 setHistory([]);

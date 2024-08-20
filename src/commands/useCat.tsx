@@ -4,7 +4,7 @@ import { FakeHTML } from "../models/FakeHTML";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
-const useCat = () : (l:string[])=>FakeHTML => {
+const useCat = () => {
     const { location } = useApp();
     const func :(l:string[])=>FakeHTML = (l: string[]) : FakeHTML => {
         if (l[0] == "--help" || l[0] == "-h") {
@@ -17,7 +17,7 @@ const useCat = () : (l:string[])=>FakeHTML => {
                     },
                     {
                         tag : "p",
-                        content: "Usage : cat <path/to/file>",
+                        content: "Usage : cat <path|to|file>",
                     },
                     {
                         tag : "p",

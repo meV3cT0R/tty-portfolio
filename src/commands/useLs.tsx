@@ -4,7 +4,7 @@ import { FakeHTML } from "../models/FakeHTML";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
-const useLs = () : (l:string[])=> FakeHTML=> {
+const useLs = () => {
     const { location } = useApp();
     const func = (l: string[]) : FakeHTML=> {
         if (l[0] == "--help" || l[0] =="-h") {
@@ -14,7 +14,7 @@ const useLs = () : (l:string[])=> FakeHTML=> {
 
                     {
                         tag : "p",
-                        content: "Usage : ls <path/to/dir>",
+                        content: "Usage : ls <path|to|dir>",
                     },
                     {
                         tag : "p",

@@ -13,7 +13,7 @@ const useTree = () => {
                 childrens: [
                     {
                         tag: 'p',
-                        content: 'Usage : tree {"[path/to/dir]"}',
+                        content: 'Usage : tree {"[path|to|dir]"}',
                     },
                     {
                         tag: 'p',
@@ -25,14 +25,14 @@ const useTree = () => {
                     },
                     {
                         tag: 'p',
-                        content: 'tree {"skills/frontend/"}',
+                        content: 'tree skills/frontend/',
                     },
                 ],
             };
         }
 
 
-        const genOutput = (loc: string[], pad: number = 0): FakeHTML => {
+        const genOutput = (loc: string[], pad= 0): FakeHTML => {
             const curr: Structure[] = currLocation(data, loc);
             // const style = {
             //     marginLeft : `${pad * 30}px`
@@ -50,12 +50,12 @@ const useTree = () => {
                             "childrens" : [
                                 {
                                     "tag" : "span",
-                                    "content" : `${padding}`,
+                                    "content" : padding,
                                 },
                                 {
                                     "tag" : "span",
                                     "className" : "text-blue-900",
-                                    "content" : `${dat.name}`,
+                                    "content" : dat.name,
                                 }
                                 ,genOutput([...loc,dat.name],pad+1)
                             ]

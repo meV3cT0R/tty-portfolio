@@ -5,7 +5,7 @@ import { FakeHTML } from "../models/FakeHTML";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
-const useCd = () : (fut:string[])=> FakeHTML=> {
+const useCd = ()=> {
     const { location, setLocation } : AppContextType  = useApp();
     const func = (fut : string[]) : FakeHTML=> {
         if(fut[0]=="--help" || fut[0] =="-h") {
@@ -14,7 +14,7 @@ const useCd = () : (fut:string[])=> FakeHTML=> {
                 childrens: [
                     {
                         tag : "p",
-                        content: "Usage : cd <path/to/dir>",
+                        content: "Usage : cd <path|to|dir>",
                     },
                     {
                         tag : "p",
