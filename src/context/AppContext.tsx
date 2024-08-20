@@ -2,12 +2,13 @@ import React, { createContext, SetStateAction, useState } from "react";
 import HistoryType from "../types/HistoryType";
 import God from "../svg/God";
 
-export const AppContext = createContext<{
+export interface AppContextType {
     location: string[],
     setLocation?: React.Dispatch<SetStateAction<string[]>>
     history: HistoryType[],
     setHistory?: React.Dispatch<SetStateAction<HistoryType[]>>
-}>({
+}
+export const AppContext = createContext<AppContextType>({
     location: [],
     history: []
 })

@@ -15,6 +15,4 @@ export interface Skill {
     projects?: Project[];
 }
 
-export interface Skills {
-    [key:string] : Skill[]
-}
+export type Skills = Record<string,Skill[]>

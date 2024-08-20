@@ -89,10 +89,10 @@ const genSkillObj = (skills: Skill[]) => {
 
         obj.subdir = []
         if(skill.tools)
-            obj["subdir"] =genSkillObj(skill.tools)
+            obj.subdir =genSkillObj(skill.tools)
 
         if(skill.desc)
-            obj["subdir"]?.push({
+            obj.subdir.push({
                 "type" : "txt",
                 "name" : "readme",
                 "content" : skill.desc
@@ -107,7 +107,7 @@ const genSkillObj = (skills: Skill[]) => {
             skill.projects.map((p : Project,idx:number)=>{
                 project.subdir?.push({
                     "type" : "url",
-                    "name" : p.name || `project ${idx}`,
+                    "name" : p.name ?? `project ${idx}`,
                     "url" : p.url
                 })
             })

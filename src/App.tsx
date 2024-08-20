@@ -3,7 +3,7 @@ import './App.css'
 import useApp from './context/useApp';
 import History from './components/History';
 
-import useCmd from './commands/useCmd';
+import {useCmd} from './commands/useCmd';
 
 
 function App() {

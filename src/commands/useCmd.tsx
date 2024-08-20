@@ -6,9 +6,10 @@ import useOpen from '../commands/useOpen';
 import useTree from '../commands/useTree';
 import useApp from '../context/useApp';
 import HistoryType from '../types/HistoryType';
+import { AppContextType } from '../context/AppContext';
 
 export const useCmd = () => {
-    const { location, setHistory, history } = useApp();
+    const { location, setHistory, history } :AppContextType  = useApp();
 
     const ls = useLs();
     const cd = useCd();
@@ -16,7 +17,7 @@ export const useCmd = () => {
     const open = useOpen();
     const tree = useTree();
 
-    const func = (prompt: string) => {
+    const func : (prompt :string)=>void = (prompt) => {
         if (prompt.trim() == "") {
             if (setHistory) {
                 setHistory([...history, {

@@ -1,5 +1,6 @@
 import useApp from "../context/useApp";
 import { data } from "../data/data";
+import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
 const useCat = () => {
@@ -16,7 +17,7 @@ const useCat = () => {
         }
         try {
             const fileName = l.pop();
-            const curr: any[] = currLocation(data, [...location, ...l]);
+            const curr: Structure[] = currLocation(data, [...location, ...l]);
             const file = curr.find(dat => dat.name.toLowerCase() == fileName?.toLowerCase());
             if (file == null) {
                 return `cat : no such file or directory : ${fileName}`;
