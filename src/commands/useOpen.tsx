@@ -1,19 +1,38 @@
 import useApp from "../context/useApp";
 import {data} from "../data/data";
+import { FakeHTML } from "../models/FakeHTML";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
-const useOpen  = ()=> {
+const useOpen  = (): (l:string[])=> FakeHTML=> {
     const { location } = useApp();
-    const func = (l:string[]=[])=> {
+    const func = (l:string[]=[]) : FakeHTML=> {
         if (l[0] == "--help" || l[0] =="-h") {
-            return <div>
-                <p> URLs are displayed as underlined text</p>
-                <p> Usage : open {"<path/to/url>"} </p>
-                <p>Examples:</p>
-                <p> open about </p>
-                <p> open {"skills/frontend/html/readme"}</p>
-            </div>
+            return {
+                tag: "div",
+                childrens: [
+                    {
+                        tag : "p",
+                        content: "URLs are displayed as underlined text",
+                    },
+                    {
+                        tag : "p",
+                        content: "Usage : open <path/to/url>",
+                    },
+                    {
+                        tag : "p",
+                        content: "Examples",
+                    },
+                    {
+                        tag : "p",
+                        content: "open about",
+                    },
+                    {
+                        tag : "p",
+                        content: "open skills/frontend/html/readme",
+                    },
+                ]
+            }
         }
         if(l.length ==0){
             throw new Error("Something Horribly Went Wrong!!");
@@ -27,7 +46,7 @@ const useOpen  = ()=> {
             return `cat : no such file or directory : ${fileName}`;
         }
         if(file.type=="txt")
-            return file.content;
+            return file.content ?? "No Content in File";
         if(file.type=="url"){
             window.open(file.url,"_blank")
             return ""

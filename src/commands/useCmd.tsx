@@ -7,8 +7,9 @@ import useTree from '../commands/useTree';
 import useApp from '../context/useApp';
 import HistoryType from '../types/HistoryType';
 import { AppContextType } from '../context/AppContext';
+import { fakeToJ } from '../utils/dom';
 
-export const useCmd = () : (prompt :string)=>void  => {
+export const useCmd = ()  => {
     const { location, setHistory, history } :AppContextType  = useApp();
 
     const ls = useLs();
@@ -47,10 +48,11 @@ export const useCmd = () : (prompt :string)=>void  => {
                 <p> example : ls --help </p>
             </div>
         } else if (promptArr[0] == "ls")
-            newHistory.output = ls(promptArr[1]?.split("/") || []);
+            newHistory.output = fakeToJ(ls(promptArr[1]?.split("/") || []));
         else if (promptArr[0] == "clear"){
             if(setHistory)
                 setHistory([]);
+            return;
         }else if (promptArr[0] == "cat") {
             let output;
             if (promptArr.length == 1 || promptArr.length > 2) {
@@ -59,7 +61,8 @@ export const useCmd = () : (prompt :string)=>void  => {
                     <p> Type "cat --help" for more info</p>
                 </div>
             } else {
-                output = cat(promptArr[1].split("/"))
+                
+                output = fakeToJ(cat(promptArr[1].split("/")))
             }
             newHistory.output = output
         }
@@ -71,7 +74,7 @@ export const useCmd = () : (prompt :string)=>void  => {
                     <p> Type "cd --help" for more info</p>
                 </div>
             } else {
-                output = cd(promptArr[1].split("/"))
+                output = fakeToJ(cd(promptArr[1].split("/")))
             }
             newHistory.output = output
         }
@@ -83,12 +86,12 @@ export const useCmd = () : (prompt :string)=>void  => {
                     <p> Type "open --help" for more info</p>
                 </div>
             } else {
-                output = open(promptArr[1]?.split("/"))
+                output = fakeToJ(open(promptArr[1]?.split("/")))
             }
             newHistory.output = output
         }
         else if (promptArr[0] == "tree") {
-            newHistory.output = tree(promptArr[1]?.split("/") || []);
+            newHistory.output = fakeToJ(tree(promptArr[1]?.split("/") || []));
         }
         else {
             newHistory.output = `vsh : command not found : ${promptArr[0]}`

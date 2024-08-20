@@ -1,28 +1,26 @@
 export function cmdSplit(text:string) : string[] {
     let single : string = "";
-
-    
-    let arr : string[] = [];
+    const arr : string[] = [];
     let temp:string = "";
-    for(let i=0;i<text.length;i++) {
-        if(single =="" && (text[i]=="\"" ||text[i]=="'")) {
-            single=text[i];
+    for(const i of text) {
+        if(single =="" && (i=="\"" ||i=="'")) {
+            single=i;
             continue;
         } 
-        if(single!="" && text[i]==single) {
+        if(single!="" && i==single) {
             arr.push(temp);
             single="";
             temp="";
             continue;
         }
-        if(text[i]==" " && temp!="" && single==""){
+        if(i==" " && temp!="" && single==""){
             arr.push(temp);
             temp="";
             continue;
         }
 
-        if(text[i]==" "&&temp=="") continue;
-        temp +=text[i];
+        if(i==" "&&temp=="") continue;
+        temp +=i;
     }
 
     if(temp!="") arr.push(temp);

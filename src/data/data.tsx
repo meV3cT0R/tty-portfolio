@@ -123,10 +123,19 @@ export const data : Structure= {
         {
             "type": "txt",
             "name": "about",
-            "content": <div>
-                <p> Hello I am Sumit Shrestha </p>
-                <strong> God </strong>
-            </div>
+            "content" : {
+                "tag" : "div",
+                "childrens" : [
+                    {
+                        "tag" : "p",
+                        "content" : "Hello I am Sumit Shrestha"
+                    },
+                    {
+                        "tag" : "strong",
+                        "content" : "God"
+                    }
+                ]
+            }
         },
         {
             "type": "dir",
@@ -183,10 +192,34 @@ export const data : Structure= {
                 {
                     "type": "txt",
                     "name": "readme",
-                    "content": <div>
-                        <p><strong>open </strong> command can be used to open the link </p>
-                        <p>Example Usage : <em>open filename</em> </p>
-                    </div>
+                    "content" : {
+                        "tag" : "div",
+                        "childrens" : [
+                            {
+                                "tag" : "p",
+                                "childrens" : [
+                                    {
+                                        "tag" : "strong",
+                                        "content" : "open"
+                                    },
+                                    {
+                                        "tag" : "span",
+                                        "content" : "command can be used to open the link"
+                                    },
+                                ]
+                            },
+                            {
+                                "tag" : "p",
+                                "content" : "Example Usage : ",
+                                "childrens" : [
+                                    {
+                                        "tag" : "em",
+                                        "content" : "open filename"
+                                    }
+                                ]
+                            },
+                        ]
+                    }
                 }
             ]
         }

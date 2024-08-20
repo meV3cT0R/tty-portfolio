@@ -1,19 +1,35 @@
 import { AppContextType } from "../context/AppContext";
 import useApp from "../context/useApp";
 import {data} from "../data/data";
+import { FakeHTML } from "../models/FakeHTML";
 import { Structure } from "../models/Structure";
 import { currLocation } from "./utils/currLocation";
 
-const useCd = () => {
+const useCd = () : (fut:string[])=> FakeHTML=> {
     const { location, setLocation } : AppContextType  = useApp();
-    const func = (fut : string[]) => {
+    const func = (fut : string[]) : FakeHTML=> {
         if(fut[0]=="--help" || fut[0] =="-h") {
-            return <div>
-                <p> Usage : cd {"<path/to/dir>"} </p>
-                <p> Examples:</p>
-                <p> cd projects </p>
-                <p> cd {"skills/frontend/"}</p>
-            </div>
+            return {
+                tag: "div",
+                childrens: [
+                    {
+                        tag : "p",
+                        content: "Usage : cd <path/to/dir>",
+                    },
+                    {
+                        tag : "p",
+                        content: "Examples",
+                    },
+                    {
+                        tag : "p",
+                        content: "cd projects",
+                    },
+                    {
+                        tag : "p",
+                        content: "cd skills/frontend/",
+                    },
+                ]
+            }
         }
         let curr: Structure[];
         if(fut[0].trim()=="~") {

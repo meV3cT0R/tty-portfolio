@@ -1,9 +1,9 @@
-import React from "react";
+import { FakeHTML } from "./FakeHTML";
 
 export  interface Structure {
     type : "dir" | "url" | "txt";
     name : string;
     subdir?: Structure[];
-    content ?: React.ReactNode;
+    content ?: FakeHTML;
     url ?:string;
 }
