@@ -91,7 +91,7 @@ export const useCmd = ()  => {
             newHistory.output = output
         }
         else if (promptArr[0] == "tree") {
-            newHistory.output = fakeToJ(tree(promptArr[1]?.split("/") || []));
+            newHistory.output = fakeToJ(tree(promptArr[1]?.split("/")));
         }
         else {
             newHistory.output = `vsh : command not found : ${promptArr[0]}`

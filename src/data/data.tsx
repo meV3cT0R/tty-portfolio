@@ -111,7 +111,7 @@ const genSkillObj = (skills: Skill[]) => {
                     "url" : p.url
                 })
             })
-            obj["subdir"].push(project)
+            obj.subdir.push(project)
         }
         return obj;
     })
@@ -162,11 +162,10 @@ export const data : Structure= {
             "type": "dir",
             "name": "skills",
             "subdir": Object.keys(skills).map(key=> {
-                    
                     return {
                         "type": "dir",
                         "name": key,
-                        "subdir": genSkillObj(skills[key as keyof typeof skills])
+                        "subdir": genSkillObj(skills[key])
                     }
             })
         },
