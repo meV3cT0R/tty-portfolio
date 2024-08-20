@@ -39,6 +39,7 @@ function App() {
       <div 
         className='bg-black text-white min-h-[100vh] w-full md:text-xl px-2 md:px-5 font-mono'
         onClick={_=>foc()}
+        onKeyDown={_=>foc()}
       >
         <History history={history}/>
         <form 
