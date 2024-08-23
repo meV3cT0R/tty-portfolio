@@ -6,7 +6,7 @@ import { currLocation } from "./utils/currLocation";
 
 const useLs = () => {
     const { location } = useApp();
-    const func = (l = []): FakeHTML => {
+    const func = (l: string[] = []): FakeHTML => {
         if (l[0] == "--help" || l[0] == "-h") {
             return {
                 tag: "div",
