@@ -6,45 +6,62 @@ import { currLocation } from "./utils/currLocation";
 
 const useLs = () => {
     const { location } = useApp();
-    const func = (l: string[]) : FakeHTML=> {
-        if (l[0] == "--help" || l[0] =="-h") {
+    const func = (l = []): FakeHTML => {
+        if (l[0] == "--help" || l[0] == "-h") {
             return {
                 tag: "div",
                 childrens: [
 
                     {
-                        tag : "p",
+                        tag: "p",
                         content: "Usage : ls path/to/dir",
                     },
                     {
-                        tag : "p",
+                        tag: "p",
                         content: "Examples : ",
                     },
                     {
-                        tag : "p",
+                        tag: "p",
                         content: "ls",
                     },
                     {
-                        tag : "p",
+                        tag: "p",
                         content: "ls skills/frontend/",
                     },
                 ]
             }
         }
-        const curr: Structure[] = currLocation(data, [...location, ...l]);
 
-        return {
-            tag: "div",
-            className : "flex flex-wrap",
-            childrens: curr.map((c) => {
+        try {
+
+            const curr: Structure[] = currLocation(data, [...location, ...l]);
+
+            return {
+                tag: "div",
+                className: "flex flex-wrap",
+                childrens: curr.map((c) => {
+                    return {
+                        tag: "span",
+                        className: `mr-6 ${c.type == "dir" ? "text-blue-900" : "text-white"} ${c.type == "url" && "underline"}`,
+                        content: c.name
+                    }
+                })
+            }
+        } catch (err) {
+            if (err instanceof Error) {
+
                 return {
-                    tag: "span",
-                    className : `mr-6 ${c.type == "dir" ? "text-blue-900" : "text-white"} ${c.type == "url" && "underline"}`,
-                    content : c.name  
+                    tag: "div",
+                    content: `ls : ${err.message} `
                 }
-            })
+            }
+            return {
+                tag: "div",
+                content: "ls : Something Went Wrong "
+            }
         }
-        
+
+
     }
 
     return func;
