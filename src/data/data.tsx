@@ -1,11 +1,11 @@
 import { Skill, Skills } from "../models/Skills"
 import { Structure } from "../models/Structure"
 
-const skills : Skills = {
+const skills: Skills = {
     "frontend": [
         {
             "name": "html",
-            "desc" : "Hacked NASA using html"
+            "desc": "Hacked NASA using html"
         },
         {
             "name": "css",
@@ -37,43 +37,55 @@ const skills : Skills = {
                         {
                             "name": "Express.js"
                         }
-                    ]
+                    ],
+
+                }
+            ], "projects": [
+                {
+                    "name": "blog",
+                    "url": "https://github.com/meV3cT0R/blog"
                 }
             ]
         }, {
-            "name" : "java",
-            "tools" : [
+            "name": "java",
+            "tools": [
                 {
-                    "name" : "Spring Framework"
-                }
-            ]
-        },{
-            "name" : "python",
-            "tools" : [
-                {
-                    "name" : "Django"
-                }
-            ] 
-        }
-    ],
-    "specialized_skills" : [
-        {
-            "name" : "Web_Scraping",
-            "tools" : [
-                {
-                    "name" : "BeautifulSoup",
-                },
-                {
-                    "name" : "Scrapy",
-                },
-                {
-                    "name" : "Selenium",
+                    "name": "Spring Framework"
                 }
             ],
-            "projects" : [
+            "projects": [
                 {
-                    "name" : "job_lising",
-                    "url" : "https://github.com/meV3cT0R/job_listing"
+                    "name": "AMS",
+                    "url": "https://github.com/meV3cT0R/ApS-backend"
+                }
+            ]
+        }, {
+            "name": "python",
+            "tools": [
+                {
+                    "name": "Django"
+                }
+            ]
+        }
+    ],
+    "specialized_skills": [
+        {
+            "name": "Web_Scraping",
+            "tools": [
+                {
+                    "name": "BeautifulSoup",
+                },
+                {
+                    "name": "Scrapy",
+                },
+                {
+                    "name": "Selenium",
+                }
+            ],
+            "projects": [
+                {
+                    "name": "job_lising",
+                    "url": "https://github.com/meV3cT0R/job_listing"
                 }
             ]
         }
@@ -82,33 +94,33 @@ const skills : Skills = {
 
 const genSkillObj = (skills: Skill[]) => {
     return skills.map(skill => {
-        const obj : Structure = {
+        const obj: Structure = {
             "type": "dir",
             "name": skill.name
         }
 
         obj.subdir = []
-        if(skill.tools)
-            obj.subdir =genSkillObj(skill.tools)
+        if (skill.tools)
+            obj.subdir = genSkillObj(skill.tools)
 
-        if(skill.desc)
+        if (skill.desc)
             obj.subdir.push({
-                "type" : "txt",
-                "name" : "readme",
-                "content" : skill.desc
+                "type": "txt",
+                "name": "readme",
+                "content": skill.desc
             })
-        if(skill.projects) {
-            const project  : Structure = {
-                "type" : "dir",
-                "name" : "projects"
+        if (skill.projects) {
+            const project: Structure = {
+                "type": "dir",
+                "name": "projects"
             }
             project.subdir = []
 
-            for(let i=0;i<skill.projects.length;i++) {
+            for (let i = 0; i < skill.projects.length; i++) {
                 project.subdir.push({
-                    "type" : "url",
-                    "name" : skill.projects[i].name ?? `project ${i}`,
-                    "url" : skill.projects[i].url
+                    "type": "url",
+                    "name": skill.projects[i].name ?? `project ${i}`,
+                    "url": skill.projects[i].url
                 })
             }
             obj.subdir.push(project)
@@ -116,23 +128,23 @@ const genSkillObj = (skills: Skill[]) => {
         return obj;
     })
 }
-export const data : Structure= {
+export const data: Structure = {
     "type": "dir",
     "name": "~",
     "subdir": [
         {
             "type": "txt",
             "name": "about",
-            "content" : {
-                "tag" : "div",
-                "childrens" : [
+            "content": {
+                "tag": "div",
+                "childrens": [
                     {
-                        "tag" : "p",
-                        "content" : "Hello I am Sumit Shrestha"
+                        "tag": "p",
+                        "content": "Hello I am Sumit Shrestha"
                     },
                     {
-                        "tag" : "strong",
-                        "content" : "God"
+                        "tag": "strong",
+                        "content": "God"
                     }
                 ]
             }
@@ -151,8 +163,8 @@ export const data : Structure= {
                             "content": "Some Random Shit, that prolly, no one's gonna read"
                         },
                         {
-                            "type" : "url",
-                            "name" : "link"
+                            "type": "url",
+                            "name": "link"
                         }
                     ]
                 }
@@ -161,12 +173,12 @@ export const data : Structure= {
         {
             "type": "dir",
             "name": "skills",
-            "subdir": Object.keys(skills).map(key=> {
-                    return {
-                        "type": "dir",
-                        "name": key,
-                        "subdir": genSkillObj(skills[key])
-                    }
+            "subdir": Object.keys(skills).map(key => {
+                return {
+                    "type": "dir",
+                    "name": key,
+                    "subdir": genSkillObj(skills[key])
+                }
             })
         },
         {
@@ -191,29 +203,29 @@ export const data : Structure= {
                 {
                     "type": "txt",
                     "name": "readme",
-                    "content" : {
-                        "tag" : "div",
-                        "childrens" : [
+                    "content": {
+                        "tag": "div",
+                        "childrens": [
                             {
-                                "tag" : "p",
-                                "childrens" : [
+                                "tag": "p",
+                                "childrens": [
                                     {
-                                        "tag" : "strong",
-                                        "content" : "open"
+                                        "tag": "strong",
+                                        "content": "open"
                                     },
                                     {
-                                        "tag" : "span",
-                                        "content" : "command can be used to open the link"
+                                        "tag": "span",
+                                        "content": "command can be used to open the link"
                                     },
                                 ]
                             },
                             {
-                                "tag" : "p",
-                                "content" : "Example Usage : ",
-                                "childrens" : [
+                                "tag": "p",
+                                "content": "Example Usage : ",
+                                "childrens": [
                                     {
-                                        "tag" : "em",
-                                        "content" : "open filename"
+                                        "tag": "em",
+                                        "content": "open filename"
                                     }
                                 ]
                             },
